@@ -3,44 +3,45 @@ window.onload = () => {
   const ctx = c.getContext("2d");
 
   const image = document.getElementById("brain");
-  ctx.drawImage(image, 400, 100, image.width, image.height);
 
   const config = {
     boxesLeft: [
-      { content: "Riding a bicycle" },
-      { content: "Digesting your lunch" },
+      { content: "Digesting your lunch", side: "left", answer: 1 },
       {
         content:
           "Recalling information about the nervous system in order to answer a test question",
+        side: "left",
+        answer: 0,
       },
+      { content: "Riding a bicycle", side: "left", answer: 2 },
     ],
     boxesRight: [
-      { content: "", x: 400, y: 100, width: 125, height: 60 },
-      { content: "", x: 440, y: 250, width: 140, height: 60 },
-      { content: "", x: 730, y: 280, width: 150, height: 60 },
+      { content: "", x: 400, y: 100, width: 125, height: 60, side: "right" },
+      { content: "", x: 440, y: 250, width: 140, height: 60, side: "right" },
+      { content: "", x: 730, y: 280, width: 150, height: 60, side: "right" },
     ],
   };
 
-  function getLines(ctx, text, maxWidth) {
-    var words = text.split(" ");
-    var lines = [];
-    var currentLine = words[0];
-
-    for (var i = 1; i < words.length; i++) {
-      var word = words[i];
-      var width = ctx.measureText(currentLine + " " + word).width;
-      if (width < maxWidth) {
-        currentLine += " " + word;
-      } else {
-        lines.push(currentLine);
-        currentLine = word;
-      }
-    }
-    lines.push(currentLine);
-    return lines;
-  }
-
   function drawBox(x, y, width, height, box) {
+    function getLines(ctx, text, maxWidth) {
+      var words = text.split(" ");
+      var lines = [];
+      var currentLine = words[0];
+
+      for (var i = 1; i < words.length; i++) {
+        var word = words[i];
+        var width = ctx.measureText(currentLine + " " + word).width;
+        if (width < maxWidth) {
+          currentLine += " " + word;
+        } else {
+          lines.push(currentLine);
+          currentLine = word;
+        }
+      }
+      lines.push(currentLine);
+      return lines;
+    }
+
     if (box.x) {
       x = box.x;
     }
@@ -54,9 +55,14 @@ window.onload = () => {
       height = box.height;
     }
 
+    ctx.strokeStyle = "rgba(0,0,0,0.5)";
+    ctx.fillStyle = "rgba(0,0,0,0.5)";
+    ctx.lineWidth = 2;
+
     ctx.beginPath();
     ctx.rect(x, y, width, height);
     ctx.stroke();
+    ctx.fillStyle = "rgba(0,0,0,1)";
 
     ctx.font = "15px Comic Sans MS";
     ctx.textAlign = "center";
@@ -98,15 +104,12 @@ window.onload = () => {
     ctx.stroke();
   }
 
-  function eraseLine(point1, point2) {
-    console.log("erasing line");
-    ctx.strokeStyle = "rgba(0,0,0,0)";
-    ctx.fillStyle = "rgba(0,0,0,0)";
-    ctx.lineWidth = 10;
-    ctx.beginPath();
-    ctx.moveTo(point1.x, point1.y);
-    ctx.lineTo(point2.x, point2.y);
-    ctx.stroke();
+  function drawLines() {
+    config.boxesLeft.forEach((box) => {
+      if (box.line) {
+        drawLine(box.drawPoint, box.line.drawPoint);
+      }
+    });
   }
 
   function drawLineBetweenBoxes(box1, box2) {
@@ -115,22 +118,37 @@ window.onload = () => {
 
     // check if there already exists a line
     if (box1.line) {
-      eraseLine(box1.drawPoint, box1.line.drawPoint);
-
       box1.line.line = null;
       box1.line = null;
+      drawEverything();
     }
 
     if (box2.line) {
-      eraseLine(box2.drawPoint, box2.line.drawPoint);
       box2.line.line = null;
       box2.line = null;
+      drawEverything();
     }
 
     drawLine(point1, point2);
 
     box1.line = box2;
     box2.line = box1;
+  }
+
+  function clearBoxLines() {
+    config.boxesLeft.forEach((box) => {
+      box.line = null;
+    });
+    config.boxesRight.forEach((box) => {
+      box.line = null;
+    });
+  }
+
+  function drawEverything() {
+    ctx.clearRect(0, 0, c.width, c.height);
+    ctx.drawImage(image, 400, 100, image.width, image.height);
+    drawBoxes();
+    drawLines();
   }
 
   function getBoxFromPos(pos) {
@@ -146,6 +164,27 @@ window.onload = () => {
     return (
       config.boxesLeft.find(isPosInBox) || config.boxesRight.find(isPosInBox)
     );
+  }
+
+  function checkEnd() {
+    let complete = true;
+    let win = true;
+    config.boxesLeft.forEach((box) => {
+      complete = complete && box.line;
+      win = win && box.line === config.boxesRight[box.answer];
+    });
+
+    setTimeout(() => {
+      if (complete) {
+        if (win) {
+          alert("Correct! Goodjob!");
+        } else {
+          alert("Try again.");
+          clearBoxLines();
+          drawEverything();
+        }
+      }
+    }, 10);
   }
 
   function setupMouseListener() {
@@ -170,12 +209,13 @@ window.onload = () => {
       const endPos = getCursorPosition(c, e);
       const boxStart = getBoxFromPos(startPos);
       const boxEnd = getBoxFromPos(endPos);
-      if (boxStart && boxEnd) {
+      if (boxStart && boxEnd && boxStart.side != boxEnd.side) {
         drawLineBetweenBoxes(boxStart, boxEnd);
+        checkEnd();
       }
     });
   }
 
-  drawBoxes();
+  drawEverything();
   setupMouseListener();
 };
