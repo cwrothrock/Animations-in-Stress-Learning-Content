@@ -145,20 +145,38 @@ window.onload = () => {
     });
   }
 
+  function drawConnectors() {
+    function drawDot(pos) {
+      ctx.fillStyle = "rgba(0,0,0,0.8)";
+      ctx.beginPath();
+      ctx.arc(pos.x, pos.y, 3, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+
+    config.boxesLeft.forEach((box) => {
+      drawDot(box.drawPoint);
+    });
+    config.boxesRight.forEach((box) => {
+      drawDot(box.drawPoint);
+    });
+  }
+
   function drawEverything() {
     ctx.clearRect(0, 0, c.width, c.height);
     ctx.drawImage(image, 400, 100, image.width, image.height);
     drawBoxes();
     drawLines();
+    drawConnectors();
   }
 
   function getBoxFromPos(pos) {
     function isPosInBox(box) {
+      const buffer = 20;
       return (
-        pos.x > box.topLeftCorner.x &&
-        pos.x < box.bottomRightCorner.x &&
-        pos.y > box.topLeftCorner.y &&
-        pos.y < box.bottomRightCorner.y
+        pos.x > box.topLeftCorner.x - buffer &&
+        pos.x < box.bottomRightCorner.x + buffer &&
+        pos.y > box.topLeftCorner.y - buffer &&
+        pos.y < box.bottomRightCorner.y + buffer
       );
     }
 
