@@ -1,8 +1,9 @@
 window.onload = () => {
   const c = document.getElementById("canvas");
   const ctx = c.getContext("2d");
-
+  const result = document.getElementById("result");
   const image = document.getElementById("brain");
+  let tries = 0;
 
   const config = {
     boxesLeft: [
@@ -177,11 +178,20 @@ window.onload = () => {
     setTimeout(() => {
       if (complete) {
         if (win) {
-          alert("Correct! Goodjob!");
+          result.innerText = "That's Correct! Good Job!";
+          result.style.color = "#009933";
         } else {
-          alert("Try again.");
-          clearBoxLines();
-          drawEverything();
+          result.innerText = "Wrong. Try Again.";
+          result.style.color = "#FF0000";
+          tries++;
+
+          const curTries = tries;
+
+          setTimeout(() => {
+            if (tries == curTries) {
+              result.innerText = "";
+            }
+          }, 2000);
         }
       }
     }, 10);

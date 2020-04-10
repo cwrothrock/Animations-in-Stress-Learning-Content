@@ -28,18 +28,37 @@
     <h4>
       Draw a line to the portion of the brain that controls each activity.
     </h4>
-    <canvas
-      id="canvas"
+    <div
       style="
-        border: 1px solid red;
-
-        z-index: 20;
-        background: transparent;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
       "
-      width="1000"
-      height="500"
-    ></canvas>
-
+    >
+      <h4
+        style="
+          font-size: 40px;
+          position: absolute;
+          z-index: 5;
+        "
+        id="result"
+      ></h4>
+      <canvas
+        id="canvas"
+        style="
+          border: 1px solid red;
+          z-index: 20;
+          background: transparent;
+          position: absolute;
+          z-index: 1;
+        "
+        width="1000"
+        height="500"
+      ></canvas>
+    </div>
     <img id="brain" style="visibility: hidden;" src="img/brain.png" />
 
     <script
