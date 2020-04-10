@@ -69,8 +69,11 @@ window.onload = () => {
       height = box.height;
     }
 
-    ctx.strokeStyle = "rgba(0,0,0,0.5)";
-    ctx.fillStyle = "rgba(0,0,0,0.5)";
+    if (box.content === "") {
+      ctx.strokeStyle = "rgba(0,0,0,0.2)";
+    } else {
+      ctx.strokeStyle = "rgba(0,0,0,0.5)";
+    }
     ctx.lineWidth = 2;
 
     ctx.beginPath();
@@ -98,13 +101,13 @@ window.onload = () => {
 
       drawBox(x, y, width, height, box);
 
-      box.drawPoint = { x: x + width + 1, y: y + height / 2 };
+      box.drawPoint = { x: x + width + 3, y: y + height / 2 };
     });
 
     config.boxesRight.forEach((box, i) => {
       drawBox(box.x, box.y, box.width, box.height, box);
 
-      box.drawPoint = { x: box.x - 1, y: box.y + box.height / 2 };
+      box.drawPoint = { x: box.x - 3, y: box.y + box.height / 2 };
     });
   }
 
@@ -160,7 +163,7 @@ window.onload = () => {
 
   function drawConnectors() {
     function drawDot(pos) {
-      ctx.fillStyle = "rgba(0,0,0,0.8)";
+      ctx.fillStyle = "rgba(0,0,0,0.6)";
       ctx.beginPath();
       ctx.arc(pos.x, pos.y, 3, 0, 2 * Math.PI);
       ctx.fill();
@@ -175,7 +178,8 @@ window.onload = () => {
   }
 
   function drawImages() {
-    const scales = [0.8, 0.7, 0.6, 0.7];
+    const scales = [0.8, 0.7, 0.5, 0.7];
+    const imageOffset = 10;
 
     let lastHeight = 0;
     let centerWidth = 850;
@@ -194,7 +198,7 @@ window.onload = () => {
       config.boxesRight[i].width = adjWidth;
       config.boxesRight[i].height = adjHeight;
 
-      lastHeight += adjHeight + 5;
+      lastHeight += adjHeight + imageOffset;
     }
   }
 
