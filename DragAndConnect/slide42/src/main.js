@@ -58,15 +58,23 @@ window.onload = () => {
 
     if (box.x) {
       x = box.x;
+    } else {
+      box.x = x;
     }
     if (box.y) {
       y = box.y;
+    } else {
+      box.y = y;
     }
     if (box.width) {
       width = box.width;
+    } else {
+      box.width = width;
     }
     if (box.height) {
       height = box.height;
+    } else {
+      box.height = height;
     }
 
     if (box.content === "") {
@@ -212,7 +220,7 @@ window.onload = () => {
 
   function getBoxFromPos(pos) {
     function isPosInBox(box) {
-      const buffer = 20;
+      const buffer = 3;
       return (
         pos.x > box.topLeftCorner.x - buffer &&
         pos.x < box.bottomRightCorner.x + buffer &&

@@ -1,0 +1,57 @@
+{
+  "boxesLeft": [
+    {
+      "content": "Digesting your lunch",
+      "side": "left",
+      "answer": 1,
+      "width": 150,
+      "height": 100,
+      "x": 40,
+      "y": 40
+    },
+    {
+      "content": "Recalling information about the nervous system in order to answer a test question",
+      "side": "left",
+      "answer": 0,
+      "width": 150,
+      "height": 100,
+      "x": 40,
+      "y": 190
+    },
+    {
+      "content": "Riding a bicycle",
+      "side": "left",
+      "answer": 2,
+      "width": 150,
+      "height": 100,
+      "x": 40,
+      "y": 340
+    }
+  ],
+  "boxesRight": [
+    {
+      "content": "",
+      "x": 400,
+      "y": 100,
+      "width": 125,
+      "height": 60,
+      "side": "right"
+    },
+    {
+      "content": "",
+      "x": 440,
+      "y": 250,
+      "width": 140,
+      "height": 60,
+      "side": "right"
+    },
+    {
+      "content": "",
+      "x": 730,
+      "y": 280,
+      "width": 150,
+      "height": 60,
+      "side": "right"
+    }
+  ]
+}

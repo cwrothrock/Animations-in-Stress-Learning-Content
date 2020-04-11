@@ -1,0 +1,75 @@
+{
+  "boxesLeft": [
+    {
+      "content": "Creates adrenaline and cortisol to respond to stress",
+      "side": "left",
+      "answer": 0,
+      "x": 42,
+      "y": 42,
+      "width": 150,
+      "height": 100
+    },
+    {
+      "content": "Regulates blood sugar",
+      "side": "left",
+      "answer": 1,
+      "x": 40,
+      "y": 150,
+      "width": 150,
+      "height": 100
+    },
+    {
+      "content": "Key player in the immune system by developing T cells",
+      "side": "left",
+      "answer": 3,
+      "x": 40,
+      "y": 260,
+      "width": 150,
+      "height": 100
+    },
+    {
+      "content": "The master gland, controls other glands and aids in growth",
+      "side": "left",
+      "answer": 2,
+      "x": 40,
+      "y": 370,
+      "width": 150,
+      "height": 100
+    }
+  ],
+  "boxesRight": [
+    {
+      "content": "",
+      "x": 779,
+      "y": 5,
+      "width": 143.20000000000002,
+      "height": 139.20000000000002,
+      "side": "right"
+    },
+    {
+      "content": "",
+      "x": 722,
+      "y": 149,
+      "width": 256.2,
+      "height": 105,
+      "side": "right"
+    },
+    {
+      "content": "",
+      "x": 731,
+      "y": 264,
+      "width": 238.5,
+      "height": 136,
+      "side": "right"
+    },
+    {
+      "content": "",
+      "x": 713,
+      "y": 410,
+      "width": 273.7,
+      "height": 73.5,
+      "side": "right"
+    }
+  ],
+  "imageIds": ["kidney", "pancreas", "pituitaryhypothalamus", "thymus"]
+}

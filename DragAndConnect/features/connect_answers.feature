@@ -6,10 +6,23 @@ Feature: Connect answers with line
   for being correct or incorrect
 
   Scenario: Billy correctly connected activities
+    Given I am on slide 12
     When I connect all activities to answers "correctly"
     Then I should see "That's Correct! Good Job!"
 
   Scenario: Billy incorrectly connected activities
+    Given I am on slide 12
+    When I connect all activities to answers "incorrectly"
+    Then I should see "Wrong. Try Again."
+    And I should not see the notification after 2 seconds
+
+  Scenario: Billy correctly connected activities
+    Given I am on slide 42
+    When I connect all activities to answers "correctly"
+    Then I should see "That's Correct! Good Job!"
+
+  Scenario: Billy incorrectly connected activities
+    Given I am on slide 42
     When I connect all activities to answers "incorrectly"
     Then I should see "Wrong. Try Again."
     And I should not see the notification after 2 seconds

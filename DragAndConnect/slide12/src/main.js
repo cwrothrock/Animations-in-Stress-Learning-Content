@@ -45,15 +45,23 @@ window.onload = () => {
 
     if (box.x) {
       x = box.x;
+    } else {
+      box.x = x;
     }
     if (box.y) {
       y = box.y;
+    } else {
+      box.y = y;
     }
     if (box.width) {
       width = box.width;
+    } else {
+      box.width = width;
     }
     if (box.height) {
       height = box.height;
+    } else {
+      box.height = height;
     }
 
     ctx.strokeStyle = "rgba(0,0,0,0.5)";
