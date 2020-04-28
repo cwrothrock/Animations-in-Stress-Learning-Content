@@ -171,7 +171,7 @@ window.onload = () => {
 
   function drawEverything() {
     ctx.clearRect(0, 0, c.width, c.height);
-    ctx.drawImage(image, 400, 100, image.width, image.height);
+    ctx.drawImage(image, 400, 100, 471, 224);
     drawBoxes();
     drawLines();
     drawConnectors();
