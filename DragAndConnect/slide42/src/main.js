@@ -186,27 +186,30 @@ window.onload = () => {
   }
 
   function drawImages() {
-    const scales = [0.8, 0.7, 0.5, 0.7];
+    const imageDims = [
+      { width: 143, height: 139 },
+      { width: 256, height: 105 },
+      { width: 238, height: 136 },
+      { width: 273, height: 73 },
+    ];
     const imageOffset = 10;
 
     let lastHeight = 0;
     let centerWidth = 850;
     for (let i in config.imageIds) {
       const id = config.imageIds[i];
-      const scale = scales[i];
       const image = document.getElementById(id);
-      const x = centerWidth - (image.width * scale) / 2;
+      const imageDim = imageDims[i];
+      const x = centerWidth - imageDim.width / 2;
       const y = lastHeight;
-      const adjWidth = image.width * scale;
-      const adjHeight = image.height * scale;
 
-      ctx.drawImage(image, x, y, adjWidth, adjHeight);
+      ctx.drawImage(image, x, y, imageDim.width, imageDim.height);
       config.boxesRight[i].x = x;
       config.boxesRight[i].y = y;
-      config.boxesRight[i].width = adjWidth;
-      config.boxesRight[i].height = adjHeight;
+      config.boxesRight[i].width = imageDim.width;
+      config.boxesRight[i].height = imageDim.height;
 
-      lastHeight += adjHeight + imageOffset;
+      lastHeight += imageDim.height + imageOffset;
     }
   }
 
