@@ -18,66 +18,25 @@
     <title>Slide 42</title>
   </head>
 
-  <body
-    style="
-      background: transparent;
-      width: 100%;
-      height: 100%;
-      display: inline-block;
-      text-align: center;
-    "
-  >
+  <body>
     <h3>
       What Can You Produce?
     </h3>
     <h4>
       Match the endocrine gland with its function or the hormone it produces
     </h4>
-    <div
-      style="
-        display: flex;
-        flex-direction: column;
-        justify-content: start;
-        align-items: center;
-        height: 500px;
-      "
-    >
-      <h4
-        style="font-size: 40px; position: absolute; z-index: 5;"
-        id="result"
-      ></h4>
-      <canvas
-        id="canvas"
-        style="
-          z-index: 20;
-          background: transparent;
-          position: absolute;
-          z-index: 1;
-        "
-        width="1000"
-        height="500"
-      ></canvas>
+    <div id="canvasDiv">
+      <h4 id="result"></h4>
+      <canvas id="canvas" width="1000" height="500"></canvas>
     </div>
-    <img
-      id="kidney"
-      style="visibility: hidden; height: 0px;"
-      src="img/kidney.png"
-    />
-    <img
-      id="pancreas"
-      style="visibility: hidden; height: 0px;"
-      src="img/pancreas.png"
-    />
+    <img id="kidney" class="imageAnswers" src="img/kidney.png" />
+    <img id="pancreas" class="imageAnswers" src="img/pancreas.png" />
     <img
       id="pituitaryhypothalamus"
-      style="visibility: hidden; height: 0px;"
+      class="imageAnswers"
       src="img/pituitaryhypothalamus.png"
     />
-    <img
-      id="thymus"
-      style="visibility: hidden; height: 0px;"
-      src="img/thymus.png"
-    />
+    <img id="thymus" class="imageAnswers" src="img/thymus.png" />
 
     <script
       type="text/javascript"

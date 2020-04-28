@@ -28,8 +28,6 @@ body {
 }
 
 #canvas {
-  z-index: 20;
   background: transparent;
   position: absolute;
-  z-index: 1;
 }
