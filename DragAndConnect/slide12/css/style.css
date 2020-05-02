@@ -1,6 +1,8 @@
 body {
   background: transparent;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   height: 100%;
   width: 100%;
@@ -12,6 +14,7 @@ body {
   justify-content: start;
   align-items: center;
   height: 500px;
+  width: 1000px;
 }
 
 /* Output if user got correct or wrong */
@@ -30,4 +33,6 @@ body {
 #canvas {
   background: transparent;
   position: absolute;
+  height: 500px;
+  width: 1000px;
 }
