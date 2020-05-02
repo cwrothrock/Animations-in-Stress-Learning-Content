@@ -89,6 +89,7 @@ function init() {
     ctx.stroke();
     ctx.fillStyle = "rgba(0,0,0,1)";
 
+    ctx.font = "15px Comic Sans MS";
     ctx.textAlign = "center";
 
     const lines = getLines(ctx, box.content, width);
@@ -158,15 +159,6 @@ function init() {
 
     box1.line = box2;
     box2.line = box1;
-  }
-
-  function clearBoxLines() {
-    config.boxesLeft.forEach((box) => {
-      box.line = null;
-    });
-    config.boxesRight.forEach((box) => {
-      box.line = null;
-    });
   }
 
   function drawConnectors() {

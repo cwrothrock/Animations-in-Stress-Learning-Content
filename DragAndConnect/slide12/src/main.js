@@ -144,15 +144,6 @@ window.onload = () => {
     box2.line = box1;
   }
 
-  function clearBoxLines() {
-    config.boxesLeft.forEach((box) => {
-      box.line = null;
-    });
-    config.boxesRight.forEach((box) => {
-      box.line = null;
-    });
-  }
-
   function drawConnectors() {
     function drawDot(pos) {
       ctx.fillStyle = "rgba(0,0,0,0.8)";
